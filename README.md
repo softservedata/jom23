@@ -1,4 +1,5 @@
 # Java Online Marathon
+
 ## To-Do List Project
 
 Three users with ADMIN and USER roles are stored in the database.
