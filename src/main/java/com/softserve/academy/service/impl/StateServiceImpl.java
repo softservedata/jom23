@@ -6,7 +6,7 @@ import com.softserve.academy.exception.NullEntityReferenceException;
 import com.softserve.academy.repository.StateRepository;
 import org.springframework.stereotype.Service;
 
-import jakarta.persistence.EntityNotFoundException;
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
 
