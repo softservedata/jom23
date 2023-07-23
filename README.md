@@ -1,13 +1,23 @@
+> ### Record a short video (5 - 10 minutes) where demonstrate the functionality your Web Application and publish it in your [<u>YouTube</u>](https://www.youtube.com) channel.
+
+***
+
 # Java Online Marathon
+## ‘ToDo List’ Application
 
-## To-Do List Project
+Please, create Service Layer of ‘ToDo List’ Application should be able to:
 
-Three users with ADMIN and USER roles are stored in the database.
+1. Add new user to the Application.
+2. Update/Delete/Gets existing users.
+3. Add new **To-Do List** to an existing user.
+4. Update/Delete/Gets existing 'To-Do Lists'.
+5. Add new **Task** to an existing 'To-Do List'.
+6. Update/Delete/Gets existing 'Tasks'.
 
-| Login         | Password | Role  |
-|---------------|:--------:|:-----:|
-| mike@mail.com |   1111   | ADMIN |
-| nick@mail.com |   2222   | USER  |
-| nora@mail.com |   3333   | USER  |
+Write tests for all the above operations.
 
-A user with the ADMIN role has full access to all resources.
+Implement all necessary getters and setters for model level classes.
+
+You should run tests to demonstrate the execution of the service level code.
+
+\* Save a list of all users as a field in the UserService class.
