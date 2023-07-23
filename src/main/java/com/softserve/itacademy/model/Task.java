@@ -2,13 +2,26 @@ package com.softserve.itacademy.model;
 
 public class Task {
 
+    private int id;
+
     private String name;
 
     private Priority priority;
 
-    public Task(String name, Priority priority) {
+    // Constructor(s), getters, setters, hashCode, equals, etc.
+
+    public Task(int id, String name, Priority priority) {
+        this.id = id;
         this.name = name;
         this.priority = priority;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -34,13 +47,15 @@ public class Task {
 
         Task task = (Task) o;
 
+        if (getId() != task.getId()) return false;
         if (getName() != null ? !getName().equals(task.getName()) : task.getName() != null) return false;
         return getPriority() == task.getPriority();
     }
 
     @Override
     public int hashCode() {
-        int result = getName() != null ? getName().hashCode() : 0;
+        int result = getId();
+        result = 31 * result + (getName() != null ? getName().hashCode() : 0);
         result = 31 * result + (getPriority() != null ? getPriority().hashCode() : 0);
         return result;
     }
@@ -48,11 +63,9 @@ public class Task {
     @Override
     public String toString() {
         return "Task{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", priority=" + priority +
                 '}';
     }
-
-    // Constructor(s), getters, setters, hashCode, equals, etc.
-
 }

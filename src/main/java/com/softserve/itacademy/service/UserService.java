@@ -8,10 +8,13 @@ public interface UserService {
 
     User addUser(User user);
 
-    User updateUser(User user);
+    User updateUser(int idUser, User user);
 
     void deleteUser(User user);
 
-    List<User> getAll();
+    void deleteUserById(int idUser);
 
+    User getUserById(int idUser);
+
+    List<User> getAll();
 }

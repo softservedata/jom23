@@ -8,18 +8,21 @@ import com.softserve.itacademy.model.User;
 
 public interface TaskService {
     
-    Task addTask(Task task, ToDo todo);
+    Task addTask(Task task, ToDo todoExist);
 
-    Task updateTask(Task task);
+    Task updateTask(int idTask, Task task);
 
     void deleteTask(Task task);
+
+    void deleteTaskById(int idTask);
+
+    Task getTaskById(int idTask);
 
     List<Task> getAll();
 
     List<Task> getByToDo(ToDo todo);
 
-    Task getByToDoName(ToDo todo, String name);
+    List<Task> getByToDoAndTaskName(ToDo todo, String taskName);
 
-    Task getByUserName(User user, String name);
-    
+    List<Task> getByUserNameAndTaskName(User user, String taskName);
 }

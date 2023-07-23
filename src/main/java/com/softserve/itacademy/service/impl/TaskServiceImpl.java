@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -78,15 +79,18 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public Task getByUserName(User user, String name) {
+    public List<Task> getByUserName(User user, String name) {
         if (Objects.isNull(user)) throw new IllegalArgumentException("User can not be Null");
         if (Objects.isNull(name)) throw new IllegalArgumentException("Name can not be Null");
         if (name.isEmpty()) throw new IllegalArgumentException("Name should not be empty");
         return toDoService.getByUser(user).stream()
                 .flatMap(toDoFound-> toDoFound.getTasks().stream())
                 .filter(task -> task.getName().equals(name))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("Task with name: " + name + " not found"));
+                .collect(Collectors.collectingAndThen(Collectors.toList(), Optional::of ))
+                .filter(list -> !list.isEmpty())
+                .orElseThrow(() -> new RuntimeException("Task with name: " + name + " not found"));
+                //.findFirst()
+                //.orElseThrow(() -> new IllegalArgumentException("Task with name: " + name + " not found"));
     }
 
     private Task updateExistingTask(Task taskExisting, Task taskNewInfo){

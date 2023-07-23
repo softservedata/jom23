@@ -7,16 +7,19 @@ import com.softserve.itacademy.model.User;
 
 public interface ToDoService {
     
-    ToDo addTodo(ToDo todo, User user);
+    ToDo addTodo(ToDo todo, User userOwner);
 
-    ToDo updateTodo(ToDo todo);
+    ToDo updateTodo(int idToDo, ToDo todo);
 
     void deleteTodo(ToDo todo);
 
+    void deleteTodoById(int idToDo);
+
+    ToDo getToDoById(int idToDo);
+
     List<ToDo> getAll();
 
-    List<ToDo> getByUser(User user);
+    List<ToDo> getByUser(User userOwner);
 
-    ToDo getByUserTitle(User user, String title);
-    
+    List<ToDo> getByUserAndToDoTitle(User userOwner, String todoTitle);
 }

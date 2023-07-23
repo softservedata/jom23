@@ -5,19 +5,29 @@ import java.util.List;
 
 public class ToDo {
 
-    private String title;
+    private int id;
 
-    private LocalDateTime createdAt;
+    private String title;
 
     private User owner;
 
     private List<Task> tasks;
 
-    public ToDo(String title, User owner, List<Task> tasks) {
+    // Constructor(s), getters, setters, hashCode, equals, etc.
+
+    public ToDo(int id, String title, User owner, List<Task> tasks) {
+        this.id = id;
         this.title = title;
         this.owner = owner;
         this.tasks = tasks;
-        this.createdAt = LocalDateTime.now();
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -26,14 +36,6 @@ public class ToDo {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
     }
 
     public User getOwner() {
@@ -59,17 +61,16 @@ public class ToDo {
 
         ToDo toDo = (ToDo) o;
 
+        if (getId() != toDo.getId()) return false;
         if (getTitle() != null ? !getTitle().equals(toDo.getTitle()) : toDo.getTitle() != null) return false;
-        if (getCreatedAt() != null ? !getCreatedAt().equals(toDo.getCreatedAt()) : toDo.getCreatedAt() != null)
-            return false;
         if (getOwner() != null ? !getOwner().equals(toDo.getOwner()) : toDo.getOwner() != null) return false;
         return getTasks() != null ? getTasks().equals(toDo.getTasks()) : toDo.getTasks() == null;
     }
 
     @Override
     public int hashCode() {
-        int result = getTitle() != null ? getTitle().hashCode() : 0;
-        result = 31 * result + (getCreatedAt() != null ? getCreatedAt().hashCode() : 0);
+        int result = getId();
+        result = 31 * result + (getTitle() != null ? getTitle().hashCode() : 0);
         result = 31 * result + (getOwner() != null ? getOwner().hashCode() : 0);
         result = 31 * result + (getTasks() != null ? getTasks().hashCode() : 0);
         return result;
@@ -78,13 +79,10 @@ public class ToDo {
     @Override
     public String toString() {
         return "ToDo{" +
-                "title='" + title + '\'' +
-                ", createdAt=" + createdAt +
+                "id=" + id +
+                ", title='" + title + '\'' +
                 ", owner=" + owner +
                 ", tasks=" + tasks +
                 '}';
     }
-    // Constructor(s), getters, setters, hashCode, equals, etc.
-
-
 }

@@ -5,6 +5,8 @@ import java.util.List;
 
 public class User {
 
+    private int id;
+
     private String firstName;
 
     private String lastName;
@@ -15,12 +17,23 @@ public class User {
 
     private List<ToDo> myTodos;
 
-    public User(String firstName, String lastName, String email, String password, List<ToDo> myTodos) {
+    // Constructor(s), getters, setters, hashCode, equals, etc.
+
+    public User(int id, String firstName, String lastName, String email, String password, List<ToDo> myTodos) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
         this.myTodos = myTodos;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -70,6 +83,7 @@ public class User {
 
         User user = (User) o;
 
+        if (getId() != user.getId()) return false;
         if (getFirstName() != null ? !getFirstName().equals(user.getFirstName()) : user.getFirstName() != null)
             return false;
         if (getLastName() != null ? !getLastName().equals(user.getLastName()) : user.getLastName() != null)
@@ -82,7 +96,8 @@ public class User {
 
     @Override
     public int hashCode() {
-        int result = getFirstName() != null ? getFirstName().hashCode() : 0;
+        int result = getId();
+        result = 31 * result + (getFirstName() != null ? getFirstName().hashCode() : 0);
         result = 31 * result + (getLastName() != null ? getLastName().hashCode() : 0);
         result = 31 * result + (getEmail() != null ? getEmail().hashCode() : 0);
         result = 31 * result + (getPassword() != null ? getPassword().hashCode() : 0);
@@ -93,10 +108,12 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "firstName='" + firstName + '\'' +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
+                ", myTodos=" + myTodos +
                 '}';
     }
 }
